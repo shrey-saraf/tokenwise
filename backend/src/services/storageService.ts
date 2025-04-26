@@ -168,5 +168,31 @@ export class StorageService {
     });
   }
   
-
+  async getWalletAddressByPosition(position: number): Promise<string | null> {
+    await this.waitForInitialization();
+    return new Promise((resolve, reject) => {
+      this.db.get<{address:string}>(
+        `
+        SELECT address
+        FROM wallets
+        ORDER BY balance DESC
+        LIMIT 1 OFFSET ?
+        `,
+        [position - 1],
+        (err, row) => {
+          if (err) {
+            reject(err);
+          } else {
+            if (row) {
+              // console.log("wallet address:", row?.address);
+              resolve(row.address);
+            } else {
+              resolve(null);
+            }
+          }
+        }
+      );
+    });
+  }
+  
 }

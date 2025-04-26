@@ -58,12 +58,6 @@ Example:
 python3 cli.py wallet_transactions 3
 ```
 
-- **Refresh the list of top wallets:**
-
-```bash
-python3 cli.py refresh
-```
-
 - **Generate a summary report for a wallet within a time frame:**
 
 ```bash
@@ -75,10 +69,17 @@ Example:
 ```bash
 python3 cli.py summarize 5 --start_date 2025-04-01 --end_date 2025-04-10
 ```
-
 This generates a report covering all transactions from 12 AM of the start date to 12 AM of the end date.
 
 ---
-
-
-
+### Note
+1)You can add your own solana rpc endpoint to the project by following these steps:
+Run the following commands:
+```bash
+cd tokenwise/backend
+touch .env
+```
+Add the following line to the .env file
+```bash
+SOLANA_RPC_URL=<your-solana-rpc-url>
+```
